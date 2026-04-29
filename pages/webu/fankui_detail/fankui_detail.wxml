@@ -1,0 +1,55 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">反馈与建议详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">反馈人</text>
+        <input wx:if="{{form.useridFrn}}" disabled="true" value="{{form.useridFrn.name}}"
+        style="color: blue;text-decoration: underline;" data-id="{{form.useridFrn.id}}" bind:tap="showUser"/>
+        <input wx:else="{{form.useridFrn}}" disabled="true" value="" />
+      </view>
+      <view class="form-item">
+        <text class="label">机构</text>
+        <input wx:if="{{form.inidFrn}}" disabled="true" value="{{form.inidFrn.name}}"
+        style="color: blue;text-decoration: underline;" data-id="{{form.inidFrn.id}}" bind:tap="showInstitution"/>
+        <input wx:else="{{form.inidFrn}}" disabled="true" value="" />
+      </view>
+      <view class="form-item">
+        <text class="label">反馈内容</text>
+        <input disabled="true" value="{{form.title}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">反馈时间</text>
+        <input disabled="true" value="{{form.createtime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">回复状态</text>
+        <input disabled="true" value="{{form.state}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">回复内容</text>
+        <input disabled="true" value="{{form.content}}" />
+      </view>
+      
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+<x-institution-detail
+show="{{showInstitution}}"
+selectedid="{{showInstitutionId}}"
+data-key="showInstitution"
+bind:cancel="boolChange"
+/>
+<x-user-detail
+show="{{showUser}}"
+selectedid="{{showUserId}}"
+data-key="showUser"
+bind:cancel="boolChange"
+/>
+

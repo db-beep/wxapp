@@ -1,0 +1,57 @@
+<!-- 弹出层遮罩 -->
+<view class="chat-mask" wx:if="{{show}}" bindtap="onClose"></view>
+
+<!-- 聊天弹出框 -->
+<view class="chat-popup" wx:if="{{show}}">
+  <!-- 顶部导航栏 -->
+  <view class="chat-header">
+    <view class="chat-title">{{rname}}</view>
+    <view class="close-btn" bindtap="onClose">
+      <van-icon name="cross" />
+    </view>
+  </view>
+  
+  <!-- 消息区域 -->
+  <scroll-view class="chat-messages" scroll-y="true" scroll-into-view="{{toView}}" scroll-with-animation="true">
+    <view id="message-container">
+      <block wx:for="{{msgData}}" wx:key="index">
+        <!-- 对方消息 -->
+        <view class="message-item other-message" wx:if="{{item.sid !== user.id}}" id="msg-{{index}}">
+          <view class="avatar">{{rnameShow}}</view>
+          <view class="message-content">
+            <view class="message-bubble">{{item.content}}</view>
+            <view class="message-time">{{item.createtime}}</view>
+          </view>
+        </view>
+        
+        <!-- 自己的消息 -->
+        <view class="message-item self-message" wx:if="{{item.sid === user.id}}" id="msg-{{index}}">
+          <view class="message-content">
+            <view class="message-bubble">{{item.content}}</view>
+            <view class="message-time">{{item.createtime}}</view>
+          </view>
+          <view class="avatar">{{mynameShow}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  
+  <!-- 输入区域 -->
+  <view class="chat-input-area">
+    <input 
+      class="chat-input" 
+      placeholder="输入消息..." 
+      value="{{inputValue}}" 
+      bindinput="onInputChange" 
+      bindconfirm="sendMessage"
+      confirm-type="send"
+    />
+    <button 
+      class="send-btn {{inputValue ? 'active' : ''}}" 
+      bindtap="sendMessage" 
+      disabled="{{!inputValue}}"
+    >
+      发送
+    </button>
+  </view>
+</view>

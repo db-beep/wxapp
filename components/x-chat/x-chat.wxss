@@ -1,0 +1,183 @@
+/* 遮罩层 */
+.chat-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+  }
+  
+  /* 聊天弹出框 */
+  .chat-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background-color: #f5f5f5;
+    border-radius: 24rpx 24rpx 0 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 顶部导航栏 */
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+    border-bottom: 1rpx solid #eee;
+  }
+  
+  .chat-title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .close-btn {
+    width: 48rpx;
+    height: 48rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-btn image {
+    width: 32rpx;
+    height: 32rpx;
+  }
+  
+  /* 消息区域 */
+  .chat-messages {
+    flex: 1;
+    padding-top: 20rpx;
+    overflow-y: auto;
+  }
+  
+  .message-item {
+    display: flex;
+    margin-bottom: 30rpx;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .other-message {
+    justify-content: flex-start;
+  }
+  
+  .self-message {
+    justify-content: flex-end;
+  }
+  
+  .avatar {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    margin: 0 16rpx;
+  }
+  
+  .message-content {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message-bubble {
+    padding: 20rpx 24rpx;
+    border-radius: 16rpx;
+    font-size: 28rpx;
+    line-height: 1.5;
+    word-break: break-all;
+  }
+  
+  .other-message .message-bubble {
+    background-color: #fff;
+    color: #333;
+    border-top-left-radius: 4rpx;
+  }
+  
+  .self-message .message-bubble {
+    background-color: #07c160;
+    color: #fff;
+    border-top-right-radius: 4rpx;
+  }
+  
+  .message-time {
+    font-size: 22rpx;
+    color: #999;
+    margin-top: 8rpx;
+    padding: 0 8rpx;
+  }
+  
+  .other-message .message-time {
+    text-align: left;
+  }
+  
+  .self-message .message-time {
+    text-align: right;
+  }
+  
+  /* 输入区域 */
+  .chat-input-area {
+    display: flex;
+    padding: 16rpx;
+    background-color: #fff;
+    border-top: 1rpx solid #eee;
+  }
+  
+  .chat-input {
+    flex: 1;
+    height: 72rpx;
+    background-color: #f5f5f5;
+    border-radius: 36rpx;
+    padding: 0 24rpx;
+    font-size: 28rpx;
+    margin-right: 16rpx;
+  }
+  
+  .send-btn {
+    width: 120rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    text-align: center;
+    background-color: #07c160;
+    color: #fff;
+    border-radius: 36rpx;
+    font-size: 28rpx;
+    border: none;
+    padding: 0;
+  }
+  
+  .send-btn.active {
+    background-color: #06ae56;
+  }
+  
+  .send-btn[disabled] {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  /* 动画效果 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10rpx);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,49 @@
+<view class="chat-box">
+  <view class="chat-box-header">
+    <text class="chat-box-title">消息列表</text>
+  </view>
+  
+  <scroll-view class="chat-list" scroll-y="true">
+    <view 
+      wx:for="{{chatList}}" 
+      wx:key="index" 
+      class="chat-item" 
+      bindtap="chatDetail" 
+      data-rid="{{user.id == item.sid ? item.rid : item.sid}}" 
+      data-rtype="{{user.id == item.sid ? item.rtype : item.stype}}" 
+      data-hisname="{{item.hisName}}"
+    >
+      <view class="chat-avatar-container-chat">
+        <view class="chat-avatar" style="background: linear-gradient(135deg, #1D6FA3, #16a085);">
+          <text class="avatar-text">{{item.hisName2}}</text>
+        </view>
+      </view>
+      
+      <view class="chat-content">
+        <view class="chat-header">
+          <text class="chat-box-username">{{item.hisName}}</text>
+          <text class="chat-box-user-type">{{user.id == item.sid ? item.rtype : item.stype}}</text>
+          <text class="chat-box-timestamp">{{item.createtime}}</text>
+        </view>
+        
+        <view class="chat-preview">
+          <text class="chat-box-message-text">{{item.content}}</text>
+          <view wx:if="{{item.unreadCount > 0}}" class="unread-count">
+            <text>{{item.unreadCount}}条未读</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <van-empty wx:if="{{!chatList || chatList.length == 0}}" description="暂无消息" />
+
+  </scroll-view>
+</view>
+
+<x-chat
+  show="{{showChat}}"
+  rid="{{rid}}" 
+  rtype="{{rtype}}" 
+  rname="{{rname}}"
+  bind:close="onChatClose"
+/>

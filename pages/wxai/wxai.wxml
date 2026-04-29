@@ -1,0 +1,44 @@
+<!-- pages/chat/chat.wxml -->
+<view class="container">
+  <scroll-view 
+    class="chat-container" 
+    scroll-y 
+    scroll-into-view="{{toView}}" 
+    scroll-with-animation
+  >
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="message {{item.type === 'user' ? 'user-message' : 'assistant-message'}}" id="msg-{{item.id}}">
+        <view class="avatar">{{item.type === 'user' ? '我' : 'AI'}}</view>
+        <view class="content">
+          <rich-text nodes="{{item.content}}"></rich-text>
+        </view>
+      </view>
+    </block>
+    
+    <view wx:if="{{isAiTyping}}" class="message assistant-message">
+      <view class="avatar">AI</view>
+      <view class="content typing-indicator">
+        <text class="dot"></text>
+        <text class="dot"></text>
+        <text class="dot"></text>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <view class="input-area">
+    <input 
+      class="input" 
+      placeholder="请输入消息..." 
+      value="{{inputText}}" 
+      bindinput="handleInput"
+      bindconfirm="sendMessage"
+    />
+    <van-button
+      class="send-btn" 
+      type="primary" 
+      size="small" 
+      bindtap="sendMessage"
+    >发送</van-button>
+    <!-- disabled="{{!inputText || isAiTyping}}" -->
+  </view>
+</view>

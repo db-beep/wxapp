@@ -1,0 +1,44 @@
+<view class="comments">
+  <view class="comments-title">评论</view>
+  
+  <!-- 发表评论区域 -->
+  <view class="comment">
+    <view class="comment-head">
+      <view class="avatar self-avatar">我</view>
+      <block wx:if="{{userInfo && userInfo.id}}">
+        <text>{{userInfo.username}}</text>
+      </block>
+      <block wx:else>
+        <text>登录以后即可发表</text>
+      </block>
+    </view>
+    <view class="comment-body">
+      <textarea id="commentStr" value="{{content}}" bindinput="onContentInput" placeholder="请输入评论内容"></textarea>
+      <button bindtap="publish" type="primary" size="mini">发布</button>
+    </view>
+  </view>
+  
+  <!-- 自己刚发表的评论 -->
+  <view class="comment" wx:for="{{myMsg}}" wx:key="index">
+    <view class="comment-head">
+      <view class="avatar self-avatar">我</view>
+      <text> 我 </text>
+      <text class="time">刚刚</text>
+    </view>
+    <view class="comment-body">
+      <text>{{item}}</text>
+    </view>
+  </view>
+  
+  <!-- 服务器加载的评论 -->
+  <view class="comment" wx:for="{{listData}}" wx:key="id">
+    <view class="comment-head">
+      <view class="avatar" style="background-color: {{item.avatarColor}}">{{item.avatarText}}</view>
+      <text>{{item.username}}</text> <text style="color: #afacac;font-size: 30rpx;margin-left: 10rpx;"> {{item.rolech}}</text>
+      <text class="time">{{item.createtime}}</text>
+    </view>
+    <view class="comment-body">
+      <text>{{item.content}}</text>
+    </view>
+  </view>
+</view>

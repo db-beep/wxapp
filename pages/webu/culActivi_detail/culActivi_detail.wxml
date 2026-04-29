@@ -1,0 +1,56 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">非遗传承活动详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">活动名称</text>
+        <input disabled="true" value="{{form.name}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">主办机构</text>
+        <input wx:if="{{form.zhubfFrn}}" disabled="true" value="{{form.zhubfFrn.name}}"
+        style="color: blue;text-decoration: underline;" data-id="{{form.zhubfFrn.id}}" bind:tap="showInstitution"/>
+        <input wx:else="{{form.zhubfFrn}}" disabled="true" value="" />
+      </view>
+      <view class="form-item">
+        <text class="label">活动内容</text>
+        <input disabled="true" value="{{form.content}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">报名说明</text>
+        <input disabled="true" value="{{form.baomsm}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">活动开始时间</text>
+        <input disabled="true" value="{{form.starttime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">结束时间</text>
+        <input disabled="true" value="{{form.endtime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">限制报名人数</text>
+        <input disabled="true" value="{{form.count0}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">已报名人数</text>
+        <input disabled="true" value="{{form.count}}" />
+      </view>
+      
+      <x-comment ctid="{{form.id}}" ctype="culActivi"></x-comment>
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+<x-institution-detail
+show="{{showInstitution}}"
+selectedid="{{showInstitutionId}}"
+data-key="showInstitution"
+bind:cancel="boolChange"
+/>
+

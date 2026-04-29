@@ -1,0 +1,32 @@
+<view class="radio-group">
+  <van-radio-group 
+    value="{{ value }}" 
+    bind:change="handleChange" 
+    direction="horizontal"
+  >
+    <!-- 全部选项 -->
+    <van-radio 
+      wx:if="{{ showAll }}" 
+      class="search-radio" 
+      name="" 
+      checked-color="#1989fa"
+    >
+      <van-tag plain type="primary" size="medium">{{ allLabel }}</van-tag>
+    </van-radio>
+    
+    <!-- 动态选项 -->
+    <van-radio 
+      wx:for="{{ list }}" 
+      wx:key="{{ valueField }}" 
+      class="search-radio" 
+      name="{{ item[valueField] }}" 
+      checked-color="#1989fa"
+    >
+      <van-tag type="primary" plain size="medium">{{ item[labelField] }}</van-tag>
+    </van-radio>
+  </van-radio-group>
+  
+  <!-- 加载状态 -->
+  <view wx:if="{{ loading }}" class="loading">加载中...</view>
+  
+</view>

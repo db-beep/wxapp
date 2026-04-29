@@ -1,0 +1,180 @@
+<view class="profile-container">
+  <!-- 顶部背景区域 -->
+  <view class="profile-header">
+    <view class="header-bg"></view>
+    <view class="profile-content">
+      <!-- 头像 -->
+      <view class="avatar-section">
+        <image class="user-avatar" src="{{userInfo.avatar?config.fileUrl+userInfo.avatar:'/assets/defaultAvatar.jpg'}}" mode="aspectFill" />
+        <view class="avatar-edit">
+          <van-icon name="photograph" size="16" color="#fff" />
+        </view>
+      </view>
+      <!-- 用户名和姓名 -->
+      <view class="user-name-section">
+        <text class="username">{{userInfo.name || '小程序用户'}}</text>
+        <text class="realname">{{userInfo.username}}</text>
+      </view>
+      <van-button wx:if="{{!userInfo.role}}" round size="normal" bindtap="navigateTo" data-url="/pages/login/login">
+      <van-icon name="manager-o" /> 登录 / 注册
+      </van-button>
+    </view>
+  </view>
+  <!-- 个人信息卡片 -->
+  <view class="info-card" wx:if="{{userInfo.role == 'user'}}">
+    <view class="card-title">用户个人信息</view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="{{utils.getIcon('username','用户名')}}" size="16" color="#969799" />
+        <text>用户名</text>
+      </view>
+      <text class="info-value">{{ userInfo.username || ' ' }}</text>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="{{utils.getIcon('name','姓名')}}" size="16" color="#969799" />
+        <text>姓名</text>
+      </view>
+      <text class="info-value">{{ userInfo.name || ' ' }}</text>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="{{utils.getIcon('gender','性别')}}" size="16" color="#969799" />
+        <text>性别</text>
+      </view>
+      <text class="info-value">{{ userInfo.gender || ' ' }}</text>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="label-o" size="16" color="#969799" />
+        <text>兴趣标签</text>
+      </view>
+      <view class="tags-container">
+        <van-tag wx:for="{{userInfo.labelsLabels}}" wx:key="id" type="primary" size="medium" class="user-tag">{{item.name}}</van-tag>
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="{{utils.getIcon('age','年龄')}}" size="16" color="#969799" />
+        <text>年龄</text>
+      </view>
+      <text class="info-value">{{ userInfo.age || ' ' }}</text>
+    </view>
+    <view class="info-item">
+      <view class="info-label">
+        <van-icon name="{{utils.getIcon('tele','电话')}}" size="16" color="#969799" />
+        <text>电话</text>
+      </view>
+      <text class="info-value">{{ userInfo.tele || ' ' }}</text>
+    </view>
+    <view class="edit-btn">
+      <van-button type="primary" size="large" bindtap="boolChange" data-key="userEdit" round block>修改个人信息</van-button>
+    </view>
+  </view>
+  
+  <view class="function-section" wx:if="{{userInfo.role == 'user'}}">
+    <view class="section-header">
+      <text class="section-title">用户功能区</text>
+      <view class="section-line"></view>
+    </view>
+    
+    <view class="function-grid">
+      <view class="function-card" bindtap="navigateTo" data-url="/pages/webu/baom_list/baom_list">
+        <view class="card-header">
+          <van-icon name="label-o" size="24" color="#fff" />
+        </view>
+        <view class="card-body">
+          <text class="card-title">非遗活动报名</text>
+        </view>
+      </view>
+      <view class="function-card" bindtap="navigateTo" data-url="/pages/webu/fankui_list/fankui_list">
+        <view class="card-header">
+          <van-icon name="label-o" size="24" color="#fff" />
+        </view>
+        <view class="card-body">
+          <text class="card-title">反馈与建议</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="collection-section">
+    <view class="section-header">
+      <text class="section-title">我的收藏</text>
+      <view class="section-line"></view>
+    </view>
+    
+    <scroll-view wx:if="{{stars && stars.length > 0}}" class="collection-scroll" scroll-x enhanced="true" show-scrollbar="false" scroll-with-animation="true">
+      <view class="collection-list">
+        <view class="collection-item" wx:for="{{stars}}" wx:key="id" bindtap="navigateToDetail" data-id="{{item.itemid}}" data-type="{{item.itemtype}}">
+          <image class="collection-image" src="{{config.fileUrl + item.showpic}}" mode="aspectFill" lazy-load />
+          <view class="collection-info">
+            <text class="collection-title">{{item.showtitle}}</text>
+            <text class="collection-desc">{{item.showdesc}}</text>
+            <text class="collection-time">{{item.createtime}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    
+    <!-- 无收藏数据时显示提示 -->
+    <view class="empty-collection" wx:else>
+      <text class="empty-text">暂无收藏!</text>
+    </view>
+  </view>
+  
+  <!-- 入口按钮区域 -->
+  <view class="function-section">
+    <view class="section-header">
+      <text class="section-title">快捷入口</text>
+      <view class="section-line"></view>
+    </view>
+    <view class="entry-buttons">
+      <view class="entry-btn {{item.extclass||''}}" wx:for="{{entryButtons}}" wx:key="url" bindtap="navigateTo" data-url="{{item.url}}">
+        <van-icon name="{{item.icon}}" size="20px" color="#fff" />
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 其他 -->
+  <view class="function-section">
+    <view class="section-header">
+      <text class="section-title">其他</text>
+      <view class="section-line"></view>
+    </view>
+    <view>
+      <van-button type="primary" size="large" round block open-type="share">
+      <van-icon name="share-o" /> 分享小程序
+      </van-button>
+      <van-button wx:if="{{userInfo.role}}" type="danger" size="large" round block bindtap="logout">
+      <van-icon name="manager-o" /> 退出登录
+      </van-button>
+      
+    </view>
+  </view>
+</view>
+
+<!-- 个人信息组件 用户 -->
+<x-user-edit
+show="{{userEdit}}"
+selectedid="{{userInfo.id}}"
+data-key="userEdit"
+bind:cancel="boolChange"
+bind:callback="loadUserInfo"
+/>
+
+<wxs module="utils">
+    getIcon = function (en = '', ch = '') {
+        if (en == 'tele' || ch.indexOf('电话') > -1 || ch.indexOf('联系') > -1 || ch.indexOf('手机') > -1) {
+            return 'phone-o'
+        }
+        if (ch.indexOf('址') > -1) {
+            return 'location-o'
+        }
+        return 'smile-o'
+    }
+    module.exports = {
+        getIcon: getIcon
+    };
+</wxs>
+

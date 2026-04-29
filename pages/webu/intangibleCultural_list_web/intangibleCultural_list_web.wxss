@@ -1,0 +1,208 @@
+/* pages/homework-list/homework-list.wxss */
+page {
+background-color: #f7f8fa;
+font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+
+/* 搜索筛选区域 */
+.search-section {
+margin: 20rpx 20rpx 0;
+background: white;
+border-radius: 16rpx;
+box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+overflow: hidden;
+}
+.section-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20rpx;
+background: linear-gradient(135deg, #1989fa, #07c160);
+border-bottom: 1rpx solid #f0f0f0;
+}
+
+.header-left {
+display: flex;
+align-items: center;
+}
+
+.section-title {
+margin-left: 10rpx;
+font-size: 30rpx;
+font-weight: 500;
+color: #eff2f5;
+}
+
+.header-right {
+display: flex;
+align-items: center;
+}
+
+.record-count {
+font-size: 28rpx;
+color: #ffffff;
+opacity: 0.9;
+}
+
+.filter-container {
+padding: 10rpx 30rpx 0;
+transition: all 0.3s ease;
+overflow: hidden;
+}
+
+/* 收起状态样式 */
+.filter-collapsed {
+max-height: 180rpx;
+}
+
+.filter-group {
+display: flex;
+}
+
+.filter-label {
+width: 30%;
+line-height: 80rpx;
+font-size: 28rpx;
+color: #646566;
+font-weight: 500;
+}
+
+.search-range {
+display: flex;
+align-items: center;
+}
+
+.datapicker {
+width: 100%;
+z-index: 99999;
+position: fixed;
+bottom: 0;
+}
+
+/* 展开/收起按钮样式 */
+.expand-btn {
+display: flex;
+justify-content: center;
+align-items: center;
+padding-bottom: 10rpx;
+color: #1989fa;
+font-size: 28rpx;
+background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8));
+position: relative;
+z-index: 1;
+}
+
+.expand-btn text {
+margin-right: 8rpx;
+}
+
+/* 列表容器样式 */
+.list-container {
+display: flex;
+flex-wrap: wrap;
+padding: 0 10rpx;
+}
+
+/* 作业项样式 - 一行两个 */
+.homework-item {
+position: relative;
+width: calc(50% - 20rpx);
+margin: 10rpx;
+background: #fff;
+border-radius: 16rpx;
+overflow: hidden;
+box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+display: flex;
+flex-direction: column;
+}
+.smallTip{
+position: absolute;
+top: 0;
+right: 0;
+padding: 5rpx 18rpx;
+font-size: 22rpx;
+background-color: #e24e33;
+border-bottom-right-radius: 13rpx;
+border-top-left-radius: 13rpx;
+color: #fff;
+}
+
+/* 图片样式 */
+.homework-image {
+width: 100%;
+height: 180rpx;
+background-color: #f5f5f5;
+}
+
+/* 内容区域 */
+.homework-content {
+padding: 16rpx;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+/* 标题样式 - 超出显示省略号 */
+.homework-title {
+font-size: 28rpx;
+font-weight: bold;
+color: #333;
+margin-bottom: 8rpx;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+}
+
+/* 描述样式 - 超出显示省略号 */
+.homework-desc {
+font-size: 24rpx;
+color: #666;
+margin-bottom: 6rpx;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+line-height: 1.4;
+}
+
+
+/* 互动数据 */
+.interaction-data {
+display: flex;
+justify-content: right;
+margin-top: 10rpx;
+}
+
+.publishtime {
+font-size: 22rpx;
+margin-right: 20rpx;
+color: #9b9797;
+}
+
+.data-item {
+display: flex;
+align-items: center;
+font-size: 22rpx;
+color: #999;
+}
+
+.data-item text {
+margin-left: 4rpx;
+}
+
+/* 空状态 */
+.empty-state {
+width: 100%;
+padding: 100rpx 0;
+}
+
+.datapicker {
+width: 100%;
+z-index: 99999;
+position: fixed;
+bottom: 0;
+}
+

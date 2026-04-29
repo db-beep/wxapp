@@ -1,0 +1,9 @@
+/* 可以添加一些自定义样式 */
+.datapicker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  

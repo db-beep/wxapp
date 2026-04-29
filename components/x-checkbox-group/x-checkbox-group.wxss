@@ -1,0 +1,50 @@
+.custom-checkbox-container {
+    width: 100%;
+    padding: 8px 0;
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .error-container {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .error-text {
+    color: #ee0a24;
+    font-size: 14px;
+  }
+  
+  .checkbox-group-wrapper {
+    width: 100%;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -4px;
+  }
+  
+  .checkbox-item {
+    margin: 4px;
+    padding: 4px 8px;
+    background-color: #9ecaf7AA;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .checkbox-text{
+    color: #1989FA;
+  }
+  
+  /* 选中状态样式 */
+  .checkbox-item.van-checkbox--checked {
+    background-color: #07c160;
+    color: #fff;
+  }
+  

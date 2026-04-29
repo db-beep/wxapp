@@ -1,0 +1,14 @@
+
+
+<van-field style="width: 100%;" value="{{ displayValue }}" placeholder="{{ placeholder }}" is-link readonly bind:tap="showPicker" bind:close="onCancel"/>
+
+
+<van-popup show="{{ !disabled && show }}" position="bottom">
+    <van-picker 
+    columns="{{ innerColumns }}" 
+    bind:confirm="onConfirm"
+    is-link 
+    value-key="{{labelField}}"
+    bind:cancel="onCancel" 
+    show-toolbar title="请选择"/>
+</van-popup>

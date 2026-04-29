@@ -1,0 +1,47 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">评论详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">用户编号</text>
+        <input disabled="true" value="{{form.userid}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">用户名</text>
+        <input disabled="true" value="{{form.username}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">用户角色</text>
+        <input disabled="true" value="{{form.rolech}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">内容</text>
+        <input disabled="true" value="{{form.content}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">发布时间</text>
+        <input disabled="true" value="{{form.createtime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">内容编号</text>
+        <input disabled="true" value="{{form.ctid}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">内容类型</text>
+        <input disabled="true" value="{{form.type}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">状态</text>
+        <input disabled="true" value="{{form.status}}" />
+      </view>
+      
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+

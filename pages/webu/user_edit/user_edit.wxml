@@ -1,0 +1,54 @@
+<!--components/add-item/add-item.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">编辑</view>
+    <!-- 可滚动的内容区域 -->
+    <scroll-view class="content" scroll-y>
+      
+      <view class="form-item">
+        <text class="label require">用户名</text>
+        <input disabled readonly maxlength="20" placeholder="请输入用户名" value="{{form.username}}" bind:change="valueChange" data-key="form.username" />
+      </view>
+      <view class="form-item">
+        <text class="label">密码</text>
+        <van-field placeholder="请输入密码" value="{{form.password}}" bind:change="valueChange" data-key="form.password" type="password" clearable/>
+      </view>
+      <view class="form-item">
+        <text class="label require">姓名</text>
+        <input maxlength="18" placeholder="请输入姓名" value="{{form.name}}" bind:change="valueChange" data-key="form.name" />
+      </view>
+      <el-form-item label="头像" prop="avatarFile">
+      <x-uploader :count="1" v-model="avatarFile"></x-uploader>
+      </el-form-item>
+      <view class="form-item">
+        <text class="label">头像</text>
+        <x-upload filename="{{form.avatar}}" editable="{{true}}" data-key="form.avatar" bind:change="valueChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">性别</text>
+        <x-select value="{{form.gender}}" columns="{{genderOptionList}}" data-key="form.gender" bind:change="valueChange"/>
+      </view>
+      <view class="form-item">
+        <text class="label">兴趣标签</text>
+        <x-checkbox-group value="{{form.labels}}" data-key="form.labels" api="/webu/cultureType/list/select" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label">年龄</text>
+        <input placeholder="请输入年龄" value="{{form.age}}" bind:change="valueChange" data-key="form.age" />
+      </view>
+      <view class="form-item">
+        <text class="label">电话</text>
+        <input maxlength="11" placeholder="请输入电话" value="{{form.tele}}" bind:change="valueChange" data-key="form.tele" />
+      </view>
+      
+    </scroll-view>
+    
+    <!-- 按钮区域 -->
+    <view class="footer">
+      <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+      <view class="btn btn-confirm" bindtap="onConfirm">确认</view>
+    </view>
+  </view>
+</view>
+

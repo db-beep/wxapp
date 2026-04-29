@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+     
+    },
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "非遗传承活动列表",
+    "navigationBarBackgroundColor": "#1989fa",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f8fa"
+  }
+  

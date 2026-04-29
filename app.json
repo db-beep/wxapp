@@ -1,0 +1,97 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/webu/intangibleCultural_detail_web/intangibleCultural_detail_web",
+        "pages/webu/intangibleCultural_list_web/intangibleCultural_list_web",
+        "pages/webu/news_detail_web/news_detail_web",
+        "pages/webu/news_list_web/news_list_web",
+        "pages/webu/culActivi_list/culActivi_list",
+        "pages/webu/baom_list/baom_list",
+        "pages/webu/cultureType_list/cultureType_list",
+        "pages/webu/fankui_list/fankui_list",
+        "pages/webu/notice_list/notice_list",
+        "pages/login/login","pages/wxai/wxai",
+        "pages/messages/messages",
+        "pages/personal/personal"
+    ],
+    "window": {
+        "navigationBarTitleText": "悦动非遗传承之家小程序",
+        "navigationBarBackgroundColor": "#000000",
+        "enablePullDownRefresh": true,
+        "navigationStyle": "default"
+    },
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "assets/tabbar/main2.png",
+                "selectedIconPath": "assets/tabbar/main2-a.png"
+            },
+			{
+				"pagePath": "pages/wxai/wxai",
+				"text": "非遗AI专家",
+				"iconPath": "assets/tabbar/ai.png",
+				"selectedIconPath": "assets/tabbar/ai-a.png"
+				},
+            {
+                "pagePath": "pages/personal/personal",
+                "text": "我的",
+                "iconPath": "assets/tabbar/mine1.png",
+                "selectedIconPath": "assets/tabbar/mine1-a.png"
+            }
+        ]
+    },
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "van-notice-bar": "@vant/weapp/notice-bar/index",
+        "van-grid": "@vant/weapp/grid/index",
+        "van-grid-item": "@vant/weapp/grid-item/index",
+        "van-icon": "@vant/weapp/icon/index",
+        "van-tag": "@vant/weapp/tag/index",
+        "van-field": "@vant/weapp/field/index",
+        "van-popup": "@vant/weapp/popup/index",
+        "van-picker": "@vant/weapp/picker/index",
+        "van-radio": "@vant/weapp/radio/index",
+        "van-radio-group": "@vant/weapp/radio-group/index",
+
+        "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+        "van-empty": "@vant/weapp/empty/index",
+        "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+        "van-checkbox": "@vant/weapp/checkbox/index",
+        "van-loading": "@vant/weapp/loading/index",
+
+        "x-admin-detail":"/pages/webu/admin_detail/admin_detail",
+        "x-institution-detail":"/pages/webu/institution_detail/institution_detail",
+        "x-user-detail":"/pages/webu/user_detail/user_detail",
+        "x-user-edit":"/pages/webu/user_edit/user_edit",
+        "x-user-add":"/pages/webu/user_add/user_add",
+        "x-intangibleCultural-detail":"/pages/webu/intangibleCultural_detail/intangibleCultural_detail",
+        "x-news-detail":"/pages/webu/news_detail/news_detail",
+        "x-culActivi-detail":"/pages/webu/culActivi_detail/culActivi_detail",
+        "x-culActivi-edit":"/pages/webu/culActivi_edit/culActivi_edit",
+        "x-culActivi-add":"/pages/webu/culActivi_add/culActivi_add",
+        "x-baom-detail":"/pages/webu/baom_detail/baom_detail",
+        "x-baom-edit":"/pages/webu/baom_edit/baom_edit",
+        "x-baom-add":"/pages/webu/baom_add/baom_add",
+        "x-cultureType-detail":"/pages/webu/cultureType_detail/cultureType_detail",
+        "x-cultureType-edit":"/pages/webu/cultureType_edit/cultureType_edit",
+        "x-cultureType-add":"/pages/webu/cultureType_add/cultureType_add",
+        "x-fankui-detail":"/pages/webu/fankui_detail/fankui_detail",
+        "x-fankui-edit":"/pages/webu/fankui_edit/fankui_edit",
+        "x-fankui-add":"/pages/webu/fankui_add/fankui_add",
+        "x-notice-detail":"/pages/webu/notice_detail/notice_detail",
+        "x-userComment-detail":"/pages/webu/userComment_detail/userComment_detail",
+
+        "ec-canvas": "/components/ec-canvas/ec-canvas",
+        "x-chat": "/components/x-chat/x-chat",
+        "x-comment": "/components/x-comment/x-comment",
+        "x-upload": "/components/x-upload/x-upload",
+        "x-media": "/components/x-media/x-media",
+        "x-select": "/components/x-select/x-select",
+        "x-date": "/components/x-date/x-date",
+        "x-labels": "/components/x-labels/x-labels",
+        "x-checkbox-group":"/components/x-checkbox-group/x-checkbox-group"
+    }
+}

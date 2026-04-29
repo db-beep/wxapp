@@ -1,0 +1,59 @@
+<view class="media-container" wx:if="{{fileUrl}}">
+    <image style="{{imgStyle}}" wx:if="{{utils.isImage(fileUrl)}}" src="{{innerUrl}}" data-url="{{innerUrl}}" mode="widthFix" class="media-image" bindtap="previewImage"></image>
+
+    <video wx:elif="{{utils.isVideo(fileUrl)}}" src="{{innerUrl}}" controls class="media-video"></video>
+
+    <audio wx:elif="{{utils.isAudio(fileUrl)}}" src="{{innerUrl}}" controls class="media-audio"></audio>
+
+    <view wx:else class="download-container">
+        <icon type="info" size="20" color="#4A90E2"></icon>
+        <text class="file-name">{{fileUrl}}</text>
+        <button class="download-btn" bindtap="downloadFile" data-url="{{innerUrl}}" loading="{{isDownloading}}">{{isDownloading ? '下载中...' : '下载'}}</button>
+    </view>
+</view>
+<view wx:if="{{!fileUrl}}">
+    <van-tag type="primary" color="#e1e1e1" size="large">未上传</van-tag>
+</view>
+
+<wxs module="utils">
+    var isImage = function (url) {
+        if (!url) return false;
+        var lowerUrl = url.toLowerCase();
+        return lowerUrl.indexOf('.jpg') !== -1 ||
+            lowerUrl.indexOf('.jpeg') !== -1 ||
+            lowerUrl.indexOf('.png') !== -1 ||
+            lowerUrl.indexOf('.gif') !== -1 ||
+            lowerUrl.indexOf('.bmp') !== -1 ||
+            lowerUrl.indexOf('.webp') !== -1;
+    };
+
+    var isVideo = function (url) {
+        if (!url) return false;
+        var lowerUrl = url.toLowerCase();
+        return lowerUrl.indexOf('.mp4') !== -1 ||
+            lowerUrl.indexOf('.webm') !== -1 ||
+            lowerUrl.indexOf('.ogg') !== -1 ||
+            lowerUrl.indexOf('.avi') !== -1 ||
+            lowerUrl.indexOf('.mov') !== -1 ||
+            lowerUrl.indexOf('.wmv') !== -1 ||
+            lowerUrl.indexOf('.flv') !== -1;
+    };
+
+    var isAudio = function (url) {
+        if (!url) return false;
+        var lowerUrl = url.toLowerCase();
+        return lowerUrl.indexOf('.mp3') !== -1 ||
+            lowerUrl.indexOf('.wav') !== -1 ||
+            lowerUrl.indexOf('.m4a') !== -1 ||
+            lowerUrl.indexOf('.ogg') !== -1 ||
+            lowerUrl.indexOf('.aac') !== -1 ||
+            lowerUrl.indexOf('.flac') !== -1;
+    };
+
+    module.exports = {
+        isImage: isImage,
+        isVideo: isVideo,
+        isAudio: isAudio
+    };
+
+</wxs>

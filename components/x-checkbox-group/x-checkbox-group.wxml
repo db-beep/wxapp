@@ -1,0 +1,31 @@
+<view class="custom-checkbox-container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <van-loading type="spinner" size="20px">加载中...</van-loading>
+  </view>
+  
+  <!-- 错误状态 -->
+  <view wx:if="{{error}}" class="error-container">
+    <text class="error-text">{{error}}</text>
+  </view>
+  
+  <!-- 多选框组 -->
+  <view wx:if="{{!loading && !error}}" class="checkbox-group-wrapper">
+    <van-checkbox-group 
+      value="{{ checkedValues }}" 
+      bind:change="onChange"
+      class="checkbox-group"
+      direction="horizontal"
+    >
+      <van-checkbox 
+        wx:for="{{options}}" 
+        wx:key="{{valueField}}" 
+        name="{{item[valueField]}}"
+        custom-class="checkbox-item"
+        shape="square"
+      >
+        <text class="checkbox-text">{{item[labelField]}}</text>
+      </van-checkbox>
+    </van-checkbox-group>
+  </view>
+</view>

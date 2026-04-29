@@ -1,0 +1,86 @@
+<!-- pages/homework-list/homework-list.wxml -->
+<view class="container">
+  <!-- 搜索筛选区域 -->
+  <view class="search-section">
+    <view class="section-header">
+      <view class="header-left">
+        <van-icon name="search" size="18" color="#ffffff" />
+        <text class="section-title">非遗文化科普查看</text>
+      </view>
+      <view class="header-right">
+        <text class="record-count">共 {{respData.listData ? respData.listData.length : '0'}} 条</text>
+      </view>
+    </view>
+    
+    <view class="filter-wrapper" id="filter-wrapper">
+      <view class="filter-container {{!isExpanded && 'filter-collapsed'}}">
+        
+        <x-labels value="{{ form.labels }}" columns="{{respData.labelsFrnList}}" label-field="name" data-key="form.labels" bind:change="valueChange"></x-labels>
+        
+        <view class="filter-group">
+          <view class="filter-label">非遗文化标题</view>
+          <van-field value="{{ form.showtitle }}" data-key="form.showtitle" bind:change="valueChange" clearable input-align="left" placeholder="请输入非遗文化标题" />
+        </view>
+        <view class="filter-group" wx:if="{{!(userInfo && userInfo.role == 'institution')}}">
+          <view class="filter-label">发布机构</view>
+          <x-select value="{{ form.fabjg }}" columns="{{fabjgFrnList}}" data-key="form.fabjg" bind:change="valueChange" labelField="name" valueField="id" />
+        </view>
+        <!-- 发布时间 时间范围 -->
+        <view class="filter-group">
+          <view class="filter-label">发布时间</view>
+          <view class="search-range">
+            <x-date value="{{ form.publishtimeL }}" type="date" placeholder="开始日期" data-key="form.publishtimeL" bind:change="valueChange" />
+            <x-date value="{{ form.publishtimeR }}" type="date" placeholder="结束日期" data-key="form.publishtimeR" bind:change="valueChange" />
+          </view>
+        </view>
+      </view>
+      
+      <!-- 展开/收起按钮 -->
+      <view class="expand-btn" wx:if="{{ showExpandBtn }}" bindtap="toggleExpand">
+        <text>{{ isExpanded ? '收起' : '展开' }}</text>
+        <van-icon name="{{ isExpanded ? 'arrow-up' : 'arrow-down' }}" size="16" />
+      </view>
+      <!-- 查询按钮 -->
+      <view style="padding: 0 30rpx 10rpx;">
+        <van-button type="primary" size="large" round bind:click="loadData" custom-class="search-button" loading="{{ loading }}">
+        <van-icon name="search" size="16" /> 查询/刷新
+        </van-button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 作业列表 -->
+  <view class="list-container">
+    <view class="homework-item" wx:for="{{ respData.listData }}" wx:key="id" bindtap="goToDetail" data-id="{{ item.id }}">
+      <image class="homework-image" src="{{ config.fileUrl + item.showpic }}" mode="aspectFill" />
+      <view class="homework-content">
+        <text wx:if="{{ item.smallTip }}" class="smallTip">{{ item.smallTip }}</text>
+        <view class="homework-title">{{ item.showtitle }}</view>
+        <view class="homework-desc">{{ item.showdesc }}</view>
+        <view>
+          <van-tag style="margin-right: 5rpx;" wx:for="{{item.labelsLabels}}" wx:key="id" wx:for-item="tag" type="primary">{{tag.name}}</van-tag>
+        </view>
+        <!-- 互动数据 -->
+        <view class="interaction-data">
+          <span class='publishtime'>
+          <van-icon name="clock-o" />{{item.publishtime}}
+          </span>
+          <view class="data-item">
+            <van-icon name="like" color="#ee0a24" />
+            <text>{{ item.praiseCount }}</text>
+          </view>
+          <view class="data-item">
+            <van-icon name="star" color="#ff976a" />
+            <text>{{ item.starCount }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{ !respData.listData || respData.listData.length === 0 }}">
+      <van-empty description="暂无作业数据" />
+    </view>
+  </view>
+</view>
+

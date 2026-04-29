@@ -1,0 +1,40 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">非遗资讯详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">资讯首图</text>
+        <x-media imgStyle="height:300rpx" fileUrl="{{form.showpic}}"></x-media>
+      </view>
+      <view class="form-item">
+        <text class="label">资讯标题</text>
+        <input disabled="true" value="{{form.showtitle}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">资讯描述</text>
+        <input disabled="true" value="{{form.showdesc}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">资讯详情</text>
+        <textarea disabled="true" value="{{form.showdetail}}" bindinput="valueChange" data-key="form.showdetail" />
+      </view>
+      <view class="form-item">
+        <text class="label">发布时间</text>
+        <input disabled="true" value="{{form.publishtime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">展示</text>
+        <x-media imgStyle="height:300rpx" fileUrl="{{form.vv}}"></x-media>
+      </view>
+      
+      <x-comment ctid="{{form.id}}" ctype="news"></x-comment>
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+

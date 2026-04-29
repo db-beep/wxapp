@@ -1,0 +1,22 @@
+<van-field
+  value="{{ displayValue }}"
+  placeholder="{{ placeholder }}"
+  readonly
+  is-link
+  disabled="{{ disabled }}"
+  required="{{ required }}"
+  bindtap="showPicker"
+/>
+<van-popup show="{{ showPicker }}" position="bottom">
+<van-datetime-picker
+  wx:if="{{ showPicker }}"
+  type="{{ type }}"
+  value="{{ currentValue }}"
+  bind:confirm="onConfirm"
+  bind:cancel="onCancel"
+  show-toolbar
+  title="{{ title }}"
+  min-date="{{ minDate }}"
+  max-date="{{ maxDate }}"
+/>
+</van-popup>

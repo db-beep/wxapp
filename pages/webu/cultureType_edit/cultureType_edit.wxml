@@ -1,0 +1,27 @@
+<!--components/add-item/add-item.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">修改</view>
+    <!-- 可滚动的内容区域 -->
+    <scroll-view class="content" scroll-y>
+      
+      <view class="form-item">
+        <text class="label require">非遗类型名</text>
+        <input maxlength="18" placeholder="请输入非遗类型名" value="{{form.name}}" bind:change="valueChange" data-key="form.name" />
+      </view>
+      <view class="form-item">
+        <text class="label">类型简介</text>
+        <input maxlength="255" placeholder="请输入类型简介" value="{{form.description}}" bind:change="valueChange" data-key="form.description" />
+      </view>
+      
+    </scroll-view>
+    
+    <!-- 按钮区域 -->
+    <view class="footer">
+      <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+      <view class="btn btn-confirm" bindtap="onConfirm">保存</view>
+    </view>
+  </view>
+</view>
+

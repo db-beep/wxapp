@@ -1,0 +1,27 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">公告详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">标题</text>
+        <input disabled="true" value="{{form.title}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">内容</text>
+        <input disabled="true" value="{{form.content}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">发布时间</text>
+        <input disabled="true" value="{{form.createtime}}" />
+      </view>
+      
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+

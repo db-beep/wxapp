@@ -1,0 +1,58 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">非遗文化科普详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">科普首图</text>
+        <x-media imgStyle="height:300rpx" fileUrl="{{form.showpic}}"></x-media>
+      </view>
+      <view class="form-item">
+        <text class="label">非遗文化标题</text>
+        <input disabled="true" value="{{form.showtitle}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">发布机构</text>
+        <input wx:if="{{form.fabjgFrn}}" disabled="true" value="{{form.fabjgFrn.name}}"
+        style="color: blue;text-decoration: underline;" data-id="{{form.fabjgFrn.id}}" bind:tap="showInstitution"/>
+        <input wx:else="{{form.fabjgFrn}}" disabled="true" value="" />
+      </view>
+      <view class="form-item">
+        <text class="label">非遗文化标签</text>
+        <view style="display: flex;flex-wrap: wrap;gap: 10rpx;">
+          <van-tag wx:for="{{ form.labelsLabels }}" wx:key="id" wx:for-item="tag" type="primary">{{ tag.name }}</van-tag>
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label">非遗文化简述</text>
+        <input disabled="true" value="{{form.showdesc}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">科普内容详情</text>
+        <textarea disabled="true" value="{{form.showdetail}}" bindinput="valueChange" data-key="form.showdetail" />
+      </view>
+      <view class="form-item">
+        <text class="label">发布时间</text>
+        <input disabled="true" value="{{form.publishtime}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">非遗文化展示</text>
+        <x-media imgStyle="height:300rpx" fileUrl="{{form.vv}}"></x-media>
+      </view>
+      
+      <x-comment ctid="{{form.id}}" ctype="intangibleCultural"></x-comment>
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+<x-institution-detail
+show="{{showInstitution}}"
+selectedid="{{showInstitutionId}}"
+data-key="showInstitution"
+bind:cancel="boolChange"
+/>
+

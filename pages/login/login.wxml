@@ -1,0 +1,208 @@
+<view class="login-container">
+  <!-- 背景渐变 -->
+  <view class="bg-gradient"></view>
+  
+  <!-- 登录卡片 -->
+  <view class="login-card">
+    <!-- 标题 -->
+    <view class="login-title">
+      <text>{{sysName}}</text>
+    </view>
+    
+    <!-- 登录表单 -->
+    <view class="login-form">
+      <!-- 用户名 -->
+      <van-field
+        value="{{ username }}"
+        bind:change="onUsernameChange"
+        label="用户名"
+        placeholder="请输入用户名"
+        clearable
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 密码 -->
+      <van-field
+        value="{{ password }}"
+        type="password"
+        bind:change="onPasswordChange"
+        label="密码"
+        placeholder="请输入密码"
+        clearable
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 角色选择 -->
+      <van-field
+        value="{{ usertypeLabel }}"
+        readonly
+        label="角色"
+        placeholder="请选择角色"
+        is-link
+        bind:tap="showRolePicker"
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 验证码 -->
+      <view class="captcha-row">
+        <van-field
+          value="{{ captcha }}"
+          bind:change="onCaptchaChange"
+          label="验证码"
+          placeholder="请输入验证码"
+          maxlength="4"
+          border="{{ false }}"
+          class="custom-field captcha-field"
+        />
+        <image 
+          src="{{ codeImg }}" 
+          class="captcha-img" 
+          bind:tap="getCode"
+          mode="aspectFit"
+        />
+      </view>
+      
+      <!-- 登录按钮 -->
+      <van-button
+        type="primary" 
+        size="large" 
+        round 
+        block 
+        class="login-btn"
+        bind:tap="login"
+        loading="{{ loginLoading }}"
+      >
+        登录
+      </van-button>
+      
+      <!-- 注册链接 -->
+      <view class="register-link" bind:tap="showRegister">
+        没有账号？去注册 <van-icon name="arrow" />
+      </view>
+      <!-- 注册链接 -->
+      <view class="register-link" bind:tap="goBack">
+        返回 <van-icon name="arrow" />
+      </view>
+    </view>
+  </view>
+  
+  <!-- 页脚 -->
+  <view class="login-footer">
+    <text>{{copyRight}}</text>
+  </view>
+  
+  <!-- 角色选择器 -->
+  <van-popup
+    show="{{ showRolePicker }}" 
+    position="bottom"
+    bind:close="hideRolePicker">
+    <van-picker
+      columns="{{ roleColumns }}"
+      bind:confirm="onRoleConfirm"
+      bind:cancel="hideRolePicker"
+      show-toolbar
+      title="选择角色"
+    />
+  </van-popup>
+  
+  <!-- 注册弹窗 -->
+  <van-popup 
+    show="{{ showRegister }}" 
+    position="center"
+    round
+    closeable
+    bind:close="hideRegister"
+    custom-class="register-popup"
+  >
+    <view class="register-title">注册账号</view>
+    
+    <view class="register-form">
+      <!-- 用户名 -->
+      <van-field
+        value="{{ regUsername }}"
+        bind:change="onRegUsernameChange"
+        label="用户名"
+        placeholder="请输入用户名"
+        clearable
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 密码 -->
+      <van-field
+        value="{{ regPassword }}"
+        type="password"
+        bind:change="onRegPasswordChange"
+        label="密码"
+        placeholder="请输入密码"
+        clearable
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 确认密码 -->
+      <van-field
+        value="{{ regPassword2 }}"
+        type="password"
+        bind:change="onRegPassword2Change"
+        label="确认密码"
+        placeholder="请确认密码"
+        clearable
+        border="{{ false }}"
+        class="custom-field"
+      />
+      
+      <!-- 用户类型 -->
+      <van-field
+        value="{{ regUsertypeLabel }}"
+        readonly
+        label="用户类型"
+        placeholder="请选择用户类型"
+        is-link
+        bind:tap="showRegRolePicker"
+        border="{{ false }}"
+        class="custom-field"
+      />
+    </view>
+    
+    <!-- 注册按钮 -->
+    <view class="register-btns">
+      <van-button 
+        plain 
+        type="primary" 
+        size="normal" 
+        round
+        bind:tap="hideRegister"
+      >
+        取消
+      </van-button>
+      <van-button 
+        type="primary" 
+        size="normal" 
+        round
+        loading="{{ registerLoading }}"
+        bind:tap="register"
+      >
+        立即注册
+      </van-button>
+    </view>
+  </van-popup>
+  
+  <!-- 注册角色选择器 -->
+  <van-popup 
+    show="{{ showRegRolePicker }}" 
+    position="bottom"
+    bind:close="hideRegRolePicker"
+  >
+    <van-picker
+      columns="{{ roleColumns }}"
+      bind:confirm="onRegRoleConfirm"
+      bind:cancel="hideRegRolePicker"
+      show-toolbar
+      title="选择用户类型"
+    />
+  </van-popup>
+</view>

@@ -1,0 +1,164 @@
+<view class="container">
+  <view class="search-section">
+    <view class="section-header">
+      <view class="header-left">
+        <van-icon name="search" size="18" color="#ffffff" />
+        <text class="section-title">反馈与建议查看</text>
+      </view>
+      <view class="header-right">
+        <text class="record-count">共 {{pager.total}} 条，已加载 {{showRecords.length}}</text>
+      </view>
+    </view>
+    
+    <view class="filter-wrapper" id="filter-wrapper">
+      <view class="filter-container {{!isExpanded && 'filter-collapsed'}}">
+        
+        
+        <view class="filter-group" wx:if="{{!(userInfo && userInfo.role == 'user')}}">
+          <view class="filter-label">反馈人</view>
+          <x-select value="{{ form.userid }}" url="/webu/user/list/select" data-key="form.userid" bind:change="valueChange" labelField="name" valueField="id" />
+        </view>
+        <view class="filter-group" wx:if="{{!(userInfo && userInfo.role == 'institution')}}">
+          <view class="filter-label">机构</view>
+          <x-select value="{{ form.inid }}" url="/webu/institution/list/select" data-key="form.inid" bind:change="valueChange" labelField="name" valueField="id" />
+        </view>
+        <view class="filter-group">
+          <view class="filter-label">反馈内容</view>
+          <van-field maxlength="255" value="{{ form.title }}" data-key="form.title" bind:change="valueChange" clearable input-align="left" placeholder="请输入反馈内容" />
+        </view>
+        <!-- 回复状态 查询 -->
+        <view class="filter-group">
+          <view class="filter-label">回复状态</view>
+          <x-select value="{{ form.state }}" columns="{{stateOptionList}}" data-key="form.state" bind:change="valueChange"/>
+        </view>
+        
+      </view>
+      
+      <!-- 展开/收起按钮 -->
+      <view class="expand-btn" wx:if="{{ showExpandBtn }}" bindtap="toggleExpand">
+        <text>{{ isExpanded ? '收起' : '展开' }}</text>
+        <van-icon name="{{ isExpanded ? 'arrow-up' : 'arrow-down' }}" size="16" />
+      </view>
+      <!-- 查询按钮 -->
+      <view style="padding: 0 30rpx 10rpx;">
+        <van-button type="primary" size="large" round bind:click="queryData" class="search-button" loading="{{ loading }}">
+        <van-icon name="search" size="16" /> 查询/刷新
+        </van-button>
+      </view>
+    </view>
+  </view>
+  
+  
+  <view class="list-container">
+    <view wx:if="{{ pager.statisticInfo}}" class="item-card">
+      <text>{{pager.statisticInfo}}</text>
+    </view>
+    <!-- 作业列表 -->
+    <block wx:for="{{ showRecords }}" wx:key="id">
+    <view class="item-card">
+      <view class="item-row" >
+        <text class="item-label">反馈人：</text>
+        <view class="item-value" wx:if="{{item.useridFrn}}">{{ item.useridFrn.name || ''}}</view>
+      </view>
+      <view class="item-row" >
+        <text class="item-label">机构：</text>
+        <view class="item-value" wx:if="{{item.inidFrn}}">{{ item.inidFrn.name || ''}}</view>
+      </view>
+      <view class="item-row">
+        <text class="item-label">反馈内容：</text>
+        <view class="item-value">{{ item.title || ''}}</view>
+      </view>
+      <view class="item-row">
+        <text class="item-label">反馈时间：</text>
+        <view class="item-value">
+          <van-icon name="clock-o" /> {{ item.createtime || ''}}
+        </view>
+      </view>
+      <view class="item-row">
+        <text class="item-label">回复状态：</text>
+        <view class="item-value">{{ item.state || ''}}</view>
+      </view>
+      <view class="item-row">
+        <text class="item-label">回复内容：</text>
+        <view class="item-value">{{ item.content || ''}}</view>
+      </view>
+      
+      <!-- 操作按钮 -->
+      <view class="action-area">
+        <van-button size="small" round bindtap="handleDetail" data-id="{{ item.id }}" icon="info">详情</van-button>
+        <van-button wx:if="{{userInfo &&( utils.toLowerCase(userInfo.role) == ''  )}}"
+        size="small" type="danger" round bindtap="handleDel" data-id="{{ item.id }}" icon="delete">删除反馈</van-button>
+        <van-button wx:if="{{userInfo &&( utils.toLowerCase(userInfo.role) == 'institution'  )}}"
+        size="small" color="#1989fa" round bindtap="handleEdit" data-id="{{ item.id }}" icon="edit">回复</van-button>
+      </view>
+    </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{ !pager.total}}">
+      <van-empty description="暂无数据" />
+    </view>
+  </view>
+  
+  <!-- 底部固定按钮栏 -->
+  <view class="bottom-bar">
+    <!--
+    <van-button type="danger" size="large" round class="btn" bindtap="handleXXX">
+    xx
+    </van-button>
+    -->
+    <van-button wx:if="{{userInfo && ( utils.toLowerCase(userInfo.role) == 'user'   )}}"
+    type="primary" size="large" round class="btn" bindtap="boolChange" data-key="showAdd" icon="plus">
+    我要反馈
+    </van-button>
+  </view>
+  
+</view>
+
+
+<!-- 新增组件 -->
+<x-fankui-add
+show="{{showAdd}}"
+data-key="showAdd"
+bind:cancel="boolChange"
+bind:callback="callback"
+/>
+<!-- 编辑组件 -->
+<x-fankui-edit
+show="{{showEdit}}"
+selectedid="{{selectedid}}"
+data-key="showEdit"
+bind:cancel="boolChange"
+bind:callback="callback"
+/>
+<!-- 详情组件 -->
+<x-fankui-detail
+show="{{showDetail}}"
+selectedid="{{selectedid}}"
+data-key="showDetail"
+bind:cancel="boolChange"
+/>
+
+
+<wxs module="utils">
+    var isImage = function (url) {
+        if (!url) return false;
+        var lowerUrl = url.toLowerCase();
+        return lowerUrl.indexOf('.jpg') !== -1 ||
+            lowerUrl.indexOf('.jpeg') !== -1 ||
+            lowerUrl.indexOf('.png') !== -1 ||
+            lowerUrl.indexOf('.gif') !== -1 ||
+            lowerUrl.indexOf('.bmp') !== -1 ||
+            lowerUrl.indexOf('.webp') !== -1;
+    };
+
+    toLowerCase = function (en = '') {
+        if(en)return en.toLowerCase()
+        return en;
+    }
+    module.exports = {
+        isImage: isImage,
+        toLowerCase: toLowerCase
+    };
+</wxs>
+

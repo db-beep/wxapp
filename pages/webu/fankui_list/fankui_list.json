@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+     
+    },
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "反馈与建议列表",
+    "navigationBarBackgroundColor": "#1989fa",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f8fa"
+  }
+  

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {},
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "AI聊天助手",
+    "navigationBarBackgroundColor": "#007aff",
+    "navigationBarTextStyle": "white"
+  }
+  

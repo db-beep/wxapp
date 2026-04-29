@@ -1,0 +1,39 @@
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">非遗机构详情</view>
+    <scroll-view class="content" scroll-y>
+      <view class="form-item">
+        <text class="label">用户名</text>
+        <input disabled="true" value="{{form.username}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">非遗机构名称</text>
+        <input disabled="true" value="{{form.name}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">机构头像</text>
+        <x-media imgStyle="height:300rpx" fileUrl="{{form.avatar}}"></x-media>
+      </view>
+      <view class="form-item">
+        <text class="label">电话</text>
+        <input disabled="true" value="{{form.tele}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">地址</text>
+        <input disabled="true" value="{{form.place}}" />
+      </view>
+      <view class="form-item">
+        <text class="label">机构简介</text>
+        <input disabled="true" value="{{form.description}}" />
+      </view>
+      
+    </scroll-view>
+    
+    <view class="footer">
+      <view class="btn btn-confirm" bindtap="onCancel">关闭</view>
+    </view>
+  </view>
+</view>
+
+

@@ -1,0 +1,27 @@
+<view class="file-uploader">
+    <!-- 文件预览区域 -->
+    <view class="preview-area" wx:if="{{currentFilename}}">
+        <x-media fileUrl="{{currentFilename}}"></x-media>
+    </view>
+
+    <!-- 上传进度条 -->
+    <view class="progress-bar" wx:if="{{uploading}}">
+        <progress percent="{{progress}}" show-info stroke-width="3" />
+        <text>上传中... {{progress}}%</text>
+    </view>
+
+    <!-- 操作按钮区域 -->
+    <view class="action-buttons" wx:if="{{editable}}">
+        <!-- 上传按钮 -->
+        <button type="primary" size="mini" bindtap="chooseFile" disabled="{{uploading}}">
+            {{currentFilename ? '重新上传' : '上传'}}
+            <van-icon name="upgrade" />
+        </button>
+
+        <!-- 删除按钮 -->
+        <button wx:if="{{currentFilename}}" type="warn" size="mini" bindtap="deleteFile" disabled="{{uploading}}">
+            删除文件
+            <van-icon name="delete" />
+        </button>
+    </view>
+</view>

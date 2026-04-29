@@ -1,0 +1,47 @@
+<!--components/add-item/add-item.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">发布非遗传承活动</view>
+    
+    <!-- 可滚动的内容区域 -->
+    <scroll-view class="content" scroll-y>
+      
+      <view class="form-item">
+        <text class="label require">活动名称</text>
+        <input maxlength="18" placeholder="请输入活动名称" value="{{form.name}}" bind:change="valueChange" data-key="form.name" />
+      </view>
+      <view class="form-item">
+        <text class="label">主办机构</text>
+        <x-select disabled="{{userInfo.role=='institution'}}" value="{{form.zhubf}}" url="/webu/institution/list/select" data-key="form.zhubf" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label require">活动内容</text>
+        <input maxlength="255" placeholder="请输入活动内容" value="{{form.content}}" bind:change="valueChange" data-key="form.content" />
+      </view>
+      <view class="form-item">
+        <text class="label">报名说明</text>
+        <input maxlength="255" placeholder="请输入报名说明" value="{{form.baomsm}}" bind:change="valueChange" data-key="form.baomsm" />
+      </view>
+      <view class="form-item">
+        <text class="label require">活动开始时间</text>
+        <x-date value="{{ form.starttime }}" type="datetime" placeholder="选择时间" data-key="form.starttime" bind:change="valueChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">结束时间</text>
+        <x-date value="{{ form.endtime }}" type="datetime" placeholder="选择时间" data-key="form.endtime" bind:change="valueChange" />
+      </view>
+      <view class="form-item">
+        <text class="label require">限制报名人数</text>
+        <input maxlength="255" placeholder="请输入限制报名人数" value="{{form.count0}}" bind:change="valueChange" data-key="form.count0" />
+      </view>
+    </scroll-view>
+    
+    <!-- 按钮区域 -->
+    <view class="footer">
+      <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+      <view class="btn btn-confirm" bindtap="onConfirm">确认</view>
+    </view>
+  </view>
+</view>
+

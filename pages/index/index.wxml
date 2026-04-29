@@ -1,0 +1,132 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <!-- 自定义顶部导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-title">{{config.sysName}}</view>
+    <view class="nav-buttons">
+      <van-button wx:for="{{navButtons}}" wx:key="type" size="small" type="primary" data-url="{{item.url}}" bindtap="navigateTo" class="nav-btn">
+      {{item.name}}
+      </van-button>
+    </view>
+  </view>
+  
+  <!-- 轮播图区域 -->
+  <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
+    <swiper-item>
+      <image src="/assets/b1.jpg" mode="aspectFill" class="banner-img" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/assets/b2.jpg" mode="aspectFill" class="banner-img" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/assets/b3.jpg" mode="aspectFill" class="banner-img" />
+    </swiper-item>
+  </swiper>
+  
+  <!-- 滚动公告 -->
+  <van-notice-bar vertical left-icon="volume-o" text="{{announcement}}" scrollable speed="50"
+  class="notice-bar"
+  background="linear-gradient(135deg, #e1e1e1, #e1e1e1)"
+  color="black"/>
+  
+  <!-- 内容组 -->
+  <view class="content-groups">
+    <view class="content-group">
+      <view class="group-header">
+        <view class="group-title">非遗文化科普</view>
+        <view class="view-all" bindtap="navigateTo" data-url='/pages/webu/intangibleCultural_list_web/intangibleCultural_list_web'>
+          查看全部
+          <van-icon name="arrow" />
+        </view>
+      </view>
+      
+      <view class="content-list">
+        <view class="content-item" wx:for="{{intangibleCulturalHotList}}" wx:key="id" wx:for-item="subItem" data-id="{{subItem.id}}" data-type="intangibleCultural" bindtap="goToDetail">
+          <image src="{{config.fileUrl + subItem.showpic}}" mode="aspectFill" class="content-img" />
+          <view class="content-info">
+            <view class="content-title">{{subItem.showtitle}}</view>
+            <view>
+              <van-tag style="margin-right: 5rpx;" wx:for="{{subItem.labelsLabels}}" wx:key="id" wx:for-item="tag" type="primary">{{tag.name}}</van-tag>
+            </view>
+            <view class="content-desc">{{subItem.showdesc}}</view>
+            <view class="content-meta">
+              <text class="publish-time">{{subItem.publishtime}}</text>
+              <view class="hotness">
+                <van-icon name="fire" color="#ee0a24" />
+                <text>{{subItem.starCount}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="content-group">
+      <view class="group-header">
+        <view class="group-title">非遗资讯</view>
+        <view class="view-all" bindtap="navigateTo" data-url='/pages/webu/news_list_web/news_list_web'>
+          查看全部
+          <van-icon name="arrow" />
+        </view>
+      </view>
+      
+      <view class="content-list">
+        <view class="content-item" wx:for="{{newsHotList}}" wx:key="id" wx:for-item="subItem" data-id="{{subItem.id}}" data-type="news" bindtap="goToDetail">
+          <image src="{{config.fileUrl + subItem.showpic}}" mode="aspectFill" class="content-img" />
+          <view class="content-info">
+            <view class="content-title">{{subItem.showtitle}}</view>
+            <view class="content-desc">{{subItem.showdesc}}</view>
+            <view class="content-meta">
+              <text class="publish-time">{{subItem.publishtime}}</text>
+              <view class="hotness">
+                <van-icon name="fire" color="#ee0a24" />
+                <text>{{subItem.starCount}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:if="{{ls && ls > 0}}" style="margin-bottom: 30rpx;">
+    <view class="section-header">
+      <text class="section-title">统计信息</text>
+      <view class="section-line"></view>
+    </view>
+    
+    <view class="statistic-container">
+      <block wx:for="{{statisticData}}" wx:key="name">
+      <view class="statistic-item" hover-class="statistic-item-hover">
+        <view class="statistic-value">{{item.value}}</view>
+        <view class="statistic-name">{{item.name}}</view>
+      </view>
+      </block>
+    </view>
+    
+    <view wx:for="{{ecInfos}}" wx:key="name" wx:for-item="ec">
+      <view class="group-header">
+        <view class="group-title">{{ec.name}}</view>
+      </view>
+      <view style="width: 700rpx; height: 450rpx;margin: 0 auto;">
+        <ec-canvas canvas-id="echart-pie" ec="{{ec.ec}}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  
+  <view class="section-header">
+    <text class="section-title">快捷入口 </text>
+    <view class="section-line"></view>
+  </view>
+  
+  <!-- 入口按钮区域 -->
+  <view class="entry-buttons">
+    <view class="entry-btn {{item.extclass||''}}" wx:for="{{entryButtons}}" wx:key="url" bindtap="navigateTo" data-url="{{item.url}}">
+      <van-icon name="{{item.icon}}" size="20px" color="#fff" />
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+  
+  
+  
+</view>
+

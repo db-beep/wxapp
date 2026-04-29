@@ -1,0 +1,426 @@
+/* pages/detail/detail.wxss */
+page {
+background-color: #f8f8f8;
+padding-bottom: 120rpx;
+}
+
+.container {
+padding-bottom: 30rpx;
+}
+
+/* 首图样式 */
+.cover-image {
+width: 100%;
+height: 450rpx;
+overflow: hidden;
+position: relative;
+}
+
+.cover-image image {
+width: 100%;
+height: 100%;
+}
+
+/* 标题区域 */
+.title-section {
+padding: 30rpx;
+background-color: #fff;
+border-radius: 0 0 20rpx 20rpx;
+box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+margin-bottom: 20rpx;
+}
+
+.title {
+font-size: 36rpx;
+font-weight: bold;
+color: #333;
+margin-bottom: 16rpx;
+display: block;
+}
+
+.desc {
+font-size: 28rpx;
+color: #666;
+line-height: 1.6;
+margin-bottom: 10rpx;
+display: block;
+}
+
+.meta-info {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.publish-time {
+font-size: 24rpx;
+color: #999;
+}
+
+.stats {
+display: flex;
+}
+
+.stat-item {
+display: flex;
+align-items: center;
+margin-left: 20rpx;
+}
+
+.stat-item text {
+font-size: 24rpx;
+color: #666;
+margin-left: 6rpx;
+}
+
+/* 操作按钮 */
+.action-buttons {
+display: flex;
+padding: 24rpx 32rpx;
+background-color: #fff;
+margin-bottom: 24rpx;
+gap: 20rpx;
+box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.action-btn {
+flex: 1;
+background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+color: #495057;
+border-radius: 48rpx;
+font-size: 28rpx;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1rpx solid #dee2e6;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.action-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+transition: left 0.5s ease;
+}
+
+.action-btn:active::before {
+left: 100%;
+}
+
+.action-btn:active {
+transform: scale(0.98);
+}
+
+.btn-content {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12rpx;
+position: relative;
+z-index: 1;
+}
+
+/* 收藏按钮激活状态 */
+.action-btn.active {
+background: linear-gradient(135deg, #fff9e6 0%, #ffeaa7 100%);
+color: #d68910;
+border-color: #f39c12;
+box-shadow: 0 4rpx 16rpx rgba(243, 156, 18, 0.3);
+}
+
+.action-btn.active .van-icon {
+animation: starPulse 0.6s ease;
+}
+
+/* 点赞按钮激活状态 */
+.action-btn.active2 {
+background: linear-gradient(135deg, #ffe5e5 0%, #ffb3b3 100%);
+color: #e74c3c;
+border-color: #e74c3c;
+box-shadow: 0 4rpx 16rpx rgba(231, 76, 60, 0.3);
+}
+
+/* 点赞按钮激活状态 */
+.action-btn.active3 {
+background: linear-gradient(135deg, #89d8a2 0%, #39df6d 100%);
+color: #165a2c;
+border-color: #7fd199;
+box-shadow: 0 4rpx 16rpx rgba(130, 204, 149, 0.3);
+}
+
+.action-btn.active2 .van-icon {
+animation: likePulse 0.6s ease;
+}
+
+/* 图标样式 */
+.action-btn .van-icon {
+transition: all 0.3s ease;
+}
+
+/* 动画效果 */
+@keyframes starPulse {
+0% {
+transform: scale(1);
+}
+
+50% {
+transform: scale(1.3) rotate(72deg);
+}
+
+100% {
+transform: scale(1);
+}
+}
+
+@keyframes likePulse {
+0% {
+transform: scale(1);
+}
+
+25% {
+transform: scale(1.2);
+}
+
+50% {
+transform: scale(0.9);
+}
+
+75% {
+transform: scale(1.1);
+}
+
+100% {
+transform: scale(1);
+}
+}
+
+/* 响应式优化 */
+@media (max-width: 750rpx) {
+.action-buttons {
+padding: 20rpx 24rpx;
+gap: 16rpx;
+}
+
+.action-btn {
+font-size: 26rpx;
+padding: 18rpx 0;
+}
+}
+
+
+/* 热门推荐 */
+.section {
+background-color: #fff;
+margin-bottom: 20rpx;
+padding: 30rpx;
+border-radius: 20rpx;
+box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20rpx;
+}
+
+.section-title {
+font-size: 32rpx;
+font-weight: bold;
+color: #333;
+position: relative;
+padding-left: 20rpx;
+}
+
+.section-title::before {
+content: "";
+position: absolute;
+left: 0;
+top: 8rpx;
+height: 32rpx;
+width: 8rpx;
+background-color: #4A90E2;
+border-radius: 4rpx;
+}
+
+.section-more {
+font-size: 24rpx;
+color: #999;
+}
+
+.recommend-scroll {
+white-space: nowrap;
+}
+
+.recommend-item {
+display: inline-block;
+width: 220rpx;
+margin-right: 20rpx;
+background-color: #f9f9f9;
+border-radius: 16rpx;
+overflow: hidden;
+box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.recommend-item image {
+width: 100%;
+height: 140rpx;
+}
+
+.recommend-title {
+font-size: 22rpx;
+font-weight: bold;
+color: #333;
+margin: 16rpx 16rpx 8rpx;
+display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.recommend-desc {
+font-size: 20rpx;
+color: #666;
+margin: 0 16rpx 16rpx;
+display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.recommend-stats {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+padding: 0 16rpx 16rpx;
+}
+
+.recommend-stats text {
+font-size: 22rpx;
+color: #FF6B6B;
+margin-left: 4rpx;
+}
+
+/* 主体内容 */
+.content-section {
+padding-bottom: 40rpx;
+}
+
+.content-item {
+margin-bottom: 30rpx;
+padding-bottom: 30rpx;
+border-bottom: 1rpx solid #f0f0f0;
+}
+
+.content-item:last-child {
+border-bottom: none;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+.content-key {
+font-size: 28rpx;
+font-weight: bold;
+color: #333;
+margin-bottom: 16rpx;
+display: block;
+}
+
+.content-value {
+font-size: 28rpx;
+color: #666;
+line-height: 1.6;
+}
+
+.media-container {
+width: 100%;
+}
+
+.media-image {
+width: 100%;
+border-radius: 12rpx;
+}
+
+.media-video {
+width: 100%;
+height: 400rpx;
+border-radius: 12rpx;
+}
+
+.media-audio {
+width: 100%;
+margin-top: 20rpx;
+}
+
+.download-container {
+display: flex;
+align-items: center;
+background-color: #f0f7ff;
+padding: 20rpx;
+border-radius: 12rpx;
+}
+
+.download-text {
+flex: 1;
+font-size: 28rpx;
+color: #4A90E2;
+margin-left: 16rpx;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.download-btn {
+background-color: #4A90E2;
+color: #fff;
+font-size: 24rpx;
+padding: 8rpx 24rpx;
+border-radius: 30rpx;
+margin-left: 20rpx;
+border: none;
+}
+
+/* 评论区占位 */
+.comment-placeholder {
+height: auto;
+background-color: #ffebee;
+border-radius: 0 0 20rpx 20rpx;
+}
+
+/* 底部固定操作栏 */
+.bottom-bar {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+height: 100rpx;
+background-color: #fff;
+display: flex;
+box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+z-index: 100;
+}
+
+.bar-item {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: none;
+border: none;
+padding: 0;
+margin: 0;
+line-height: 1;
+}
+
+.bar-item text {
+font-size: 22rpx;
+color: #666;
+margin-top: 6rpx;
+}

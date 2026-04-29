@@ -1,0 +1,117 @@
+<!-- pages/detail/detail.wxml -->
+<view class="container">
+  <!-- 顶部首图 -->
+  <view class="cover-image">
+    <image src="{{config.fileUrl + detail.showpic}}" mode="aspectFill"></image>
+  </view>
+  
+  <!-- 标题区域 -->
+  <view class="title-section">
+    <text class="title">{{detail.showtitle}}</text>
+    <text class="desc">{{detail.showdesc}}</text>
+    <view class="meta-info">
+      <text class="publish-time">{{detail.publishtime}}</text>
+      <view class="stats">
+        <view class="stat-item">
+          <van-icon name="star" size="16" color="#FFD700" />
+          <text>{{starCount}}</text>
+        </view>
+        <view class="stat-item">
+          <van-icon name="like" size="16" color="#FF6B6B"></van-icon>
+          <text>{{praiseCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn {{!startBtnShow ? 'active' : ''}}" bindtap="toggleStar">
+      <view class="btn-content">
+        <van-icon name="star" size="20" color="{{!startBtnShow ? '#FFD700' : '#999'}}" />
+        <text>{{!startBtnShow ? '已收藏' : '收藏'}}</text>
+      </view>
+    </button>
+    <button class="action-btn {{!praiseBtnShow ? 'active2' : ''}}" bindtap="togglePraise">
+      <view class="btn-content">
+        <van-icon name="like" size="20" color="{{!praiseBtnShow ? '#FF4757' : '#999'}}" />
+        <text>{{!praiseBtnShow ? '已点赞' : '点赞'}}</text>
+      </view>
+    </button>
+  </view>
+  
+  
+  <!-- 热门推荐 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">热门推荐</text>
+      <text class="section-more">查看更多 ></text>
+    </view>
+    <scroll-view scroll-x class="recommend-scroll">
+      <view class="recommend-item" wx:for="{{recommends}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <image src="{{config.fileUrl + item.showpic}}" mode="aspectFill"></image>
+        <text class="recommend-title">{{item.showtitle|| '--'}}</text>
+        <text class="recommend-desc">{{item.showdesc|| '--'}}</text>
+        <view class="recommend-stats">
+          <van-icon name="fire" size="12" color="#ee0a24" />
+          <text>{{item.starCount}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 主体内容 -->
+  <view class="section content-section">
+    <view class="section-header">
+      <text class="section-title">内容详情</text>
+    </view>
+    <view class="content-item">
+      <text class="content-key">资讯详情</text>
+      <text class="content-value">{{detail.showdetail || ''}}</text>
+    </view>
+    <view class="content-item">
+      <text class="content-key">发布时间</text>
+      <text class="content-value">{{detail.publishtime || ''}}</text>
+    </view>
+    <view class="content-item" wx:if="{{detail.vv}}">
+      <text class="content-key">展示</text>
+      <x-media imgStyle="width:100%" fileUrl="{{detail.vv}}" />
+    </view>
+    
+  </view>
+  <view id="comment-area" class="comment-placeholder">
+    <x-comment ctid="{{detail.id}}" ctype="news"></x-comment>
+  </view>
+</view>
+
+<!-- 底部固定操作栏 -->
+<view class="bottom-bar">
+  <button class="bar-item" open-type="share">
+    <van-icon name="share-o" size="20" color="#4CAF50" />
+    <text>分享</text>
+  </button>
+  <button class="bar-item" bindtap="scrollToComment">
+    <van-icon name="chat-o" dot size="20" color="#4A90E2" />
+    <text>评论</text>
+  </button>
+  <button class="bar-item" bindtap="toggleStar">
+    <van-icon name="star" size="20" color="{{!startBtnShow ? '#FFD700' : '#999'}}"></van-icon>
+    <text>收藏</text>
+  </button>
+  <button class="bar-item" bindtap="togglePraise">
+    <van-icon name="like" size="20" color="{{!praiseBtnShow ? '#FF6B6B' : '#999'}}"></van-icon>
+    <text>点赞</text>
+  </button>
+</view>
+
+
+<wxs module="utils">
+    toLowerCase = function (en = '') {
+        if(en)return en.toLowerCase()
+        return en;
+    }
+    module.exports = {
+        toLowerCase: toLowerCase
+    };
+</wxs>
+

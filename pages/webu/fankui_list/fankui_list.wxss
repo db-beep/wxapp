@@ -1,0 +1,180 @@
+/* pages/item-list/item-list.wxss */
+page {
+    background-color: #f7f8fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+
+/* 搜索筛选区域 */
+.search-section {
+    margin: 20rpx 20rpx 0;
+    background: white;
+    border-radius: 16rpx;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    background: linear-gradient(135deg, #1989fa, #07c160);
+    border-bottom: 1rpx solid #f0f0f0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    margin-left: 10rpx;
+    font-size: 30rpx;
+    font-weight: 500;
+    color: #eff2f5;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.record-count {
+    font-size: 28rpx;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.filter-container {
+    padding: 10rpx 30rpx 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* 收起状态样式 */
+.filter-collapsed {
+    max-height: 180rpx;
+}
+
+.filter-group {
+    display: flex;
+}
+
+.filter-label {
+    width: 30%;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #646566;
+    font-weight: 500;
+}
+
+.search-range {
+    display: flex;
+    align-items: center;
+}
+
+.datapicker {
+    width: 100%;
+    z-index: 99999;
+    position: fixed;
+    bottom: 0;
+}
+
+/* 展开/收起按钮样式 */
+.expand-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10rpx;
+    color: #1989fa;
+    font-size: 28rpx;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8));
+    position: relative;
+    z-index: 1;
+}
+
+.expand-btn text {
+    margin-right: 8rpx;
+}
+
+/* 空状态 */
+.empty-state {
+    width: 100%;
+    padding: 100rpx 0;
+}
+
+
+.list-container {
+    padding: 20rpx 20rpx 200rpx;
+    background-color: #f5f5f5;
+  }
+  
+  .item-card {
+    background-color: #fff;
+    border-radius: 12rpx;
+    margin-bottom: 16rpx;
+    padding: 24rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    border-top: blue 2px solid;
+  }
+  
+  .item-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
+    font-size: 26rpx;
+  }
+  
+  .item-label {
+    width: 160rpx;
+    color: #666;
+  }
+  
+  .item-value {
+    width: 100%;
+    flex: 1;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8rpx;
+  }
+  
+  .action-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16rpx;
+  }
+  
+
+
+  
+/* 底部按钮栏 */
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+    box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  /* 按钮样式 */
+  .btn {
+    flex: 1;
+    margin: 0 10rpx;
+    height: 80rpx;
+    font-size: 28rpx;
+  }
+  

@@ -1,0 +1,31 @@
+<!--components/add-item/add-item.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">立即报名</view>
+    
+    <!-- 可滚动的内容区域 -->
+    <scroll-view class="content" scroll-y>
+      
+      <view class="form-item">
+        <text class="label require">报名人</text>
+        <x-select disabled="{{userInfo.role=='user'}}" value="{{form.userid}}" url="/webu/user/list/select" data-key="form.userid" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label require">报名活动</text>
+        <x-select value="{{form.acid}}" url="/webu/culActivi/list/select" data-key="form.acid" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label require">报名备注</text>
+        <input maxlength="255" placeholder="请输入报名备注" value="{{form.remark}}" bind:change="valueChange" data-key="form.remark" />
+      </view>
+    </scroll-view>
+    
+    <!-- 按钮区域 -->
+    <view class="footer">
+      <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+      <view class="btn btn-confirm" bindtap="onConfirm">立即报名</view>
+    </view>
+  </view>
+</view>
+

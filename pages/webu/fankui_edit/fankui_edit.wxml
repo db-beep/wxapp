@@ -1,0 +1,47 @@
+<!--components/add-item/add-item.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="mask" bindtap="onCancel"></view>
+  <view class="container">
+    <view class="header">回复</view>
+    <!-- 可滚动的内容区域 -->
+    <scroll-view class="content" scroll-y>
+      
+      <view class="form-item">
+        <text class="label">反馈人</text>
+        <x-select disabled="{{ false   || userInfo.role=='user'}}"
+        value="{{form.userid}}" url="/webu/user/list/select"
+        data-key="form.userid" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label require">机构</text>
+        <x-select disabled="{{ false   || userInfo.role=='institution'}}"
+        value="{{form.inid}}" url="/webu/institution/list/select"
+        data-key="form.inid" bind:change="valueChange" labelField="name"/>
+      </view>
+      <view class="form-item">
+        <text class="label require">反馈内容</text>
+        <input disabled readonly maxlength="255" placeholder="请输入反馈内容" value="{{form.title}}" bind:change="valueChange" data-key="form.title" />
+      </view>
+      <view class="form-item">
+        <text class="label">反馈时间</text>
+        <x-date disabled="{{true}}" value="{{ form.createtime }}" type="datetime" placeholder="选择时间" data-key="form.createtime" bind:change="valueChange" />
+      </view>
+      <view class="form-item">
+        <text class="label">回复状态</text>
+        <x-select value="{{form.state}}" columns="{{stateOptionList}}" data-key="form.state" bind:change="valueChange"/>
+      </view>
+      <view class="form-item">
+        <text class="label">回复内容</text>
+        <input maxlength="255" placeholder="请输入回复内容" value="{{form.content}}" bind:change="valueChange" data-key="form.content" />
+      </view>
+      
+    </scroll-view>
+    
+    <!-- 按钮区域 -->
+    <view class="footer">
+      <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+      <view class="btn btn-confirm" bindtap="onConfirm">保存</view>
+    </view>
+  </view>
+</view>
+
